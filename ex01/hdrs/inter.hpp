@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   inter.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jramiro <jramiro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/16 17:43:14 by jramiro           #+#    #+#             */
-/*   Updated: 2025/09/16 22:20:31 by jramiro          ###   ########.fr       */
+/*   Created: 2025/09/16 21:38:00 by jramiro           #+#    #+#             */
+/*   Updated: 2025/09/16 22:18:14 by jramiro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
-#include "iter.hpp"
+#ifndef INTER_HPP
+#define INTER_HPP
 
-int	main(void)
+template <typename T>
+void	iter(T* array, std::size_t array_len, void (*f)(T&))
 {
-
-
-	return (0);
+	for (std::size_t i = 0; i < array_len; i++)
+		f(array[i]);
 }
+
+template <typename T>
+void	iter(const T* array, std::size_t array_len, void (*f)(const T&))
+{
+	for (std::size_t i = 0; i < array_len; i++)
+		f(array[i]);
+}
+
+#endif // #ifndef INTER_HPP
