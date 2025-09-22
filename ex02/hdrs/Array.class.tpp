@@ -6,7 +6,7 @@
 /*   By: jramiro <jramiro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 15:05:29 by jramiro           #+#    #+#             */
-/*   Updated: 2025/09/19 14:24:31 by jramiro          ###   ########.fr       */
+/*   Updated: 2025/09/22 16:43:19 by jramiro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <exception>
 #include <iostream>
 
-template <typename Type = int>
+template <typename T = int>
 class Array
 {
 	public:
@@ -28,7 +28,7 @@ class Array
 		~Array();
 
 		// operators overload
-		Type&	operator[](unsigned int index);
+		T&	operator[](unsigned int index);
 
 		// methods
 
@@ -44,33 +44,33 @@ class Array
 
 	private:
 		unsigned int	_size;
-		Type*			_array;
+		T*				_array;
 		
 };
 
 // ----------------------------------------
 // constructors / destructors -------------
 
-template <typename Type>
-Array<Type>::Array()
+template <typename T>
+Array<T>::Array()
 	: _size(0)
 	, _array(NULL)
 {
 	std::cout << "Array default constructor called" << std::endl;
 }
 
-template <typename Type>
-Array<Type>::Array(unsigned int n)
+template <typename T>
+Array<T>::Array(unsigned int n)
 	: _size(n)
-	, _array(n ? new Type[n] : NULL)
+	, _array(n ? new T[n]() : NULL)
 {
 	std::cout << "Array size constructor called" << std::endl;
 }
 
-template <typename Type>
-Array<Type>::Array(const Array& old_obj)
+template <typename T>
+Array<T>::Array(const Array<T>& old_obj)
 	: _size(old_obj._size)
-	, _array(old_obj._size ? new Type[old_obj._size] : NULL)
+	, _array(old_obj._size ? new T[old_obj._size] : NULL)
 {
 	std::cout << "Array copy constructor called" << std::endl;
 
@@ -78,8 +78,8 @@ Array<Type>::Array(const Array& old_obj)
 		this->_array[i] = old_obj._array[i];
 }
 
-template <typename Type>
-Array<Type>&	Array<Type>::operator=(const Array& old_obj)
+template <typename T>
+Array<T>&	Array<T>::operator=(const Array<T>& old_obj)
 {
 	std::cout << "Array assignement operator called" << std::endl;
 
@@ -90,7 +90,7 @@ Array<Type>&	Array<Type>::operator=(const Array& old_obj)
 		if (this->_array)
 			delete[] this->_array;
 
-		this->_array = _size ? new Type[_size] : NULL;
+		this->_array = _size ? new T[_size] : NULL;
 
 		for (unsigned int i = 0; i < _size; i++)
 			this->_array[i] = old_obj._array[i];
@@ -98,8 +98,8 @@ Array<Type>&	Array<Type>::operator=(const Array& old_obj)
 	return (*this);
 }
 
-template <typename Type>
-Array<Type>::~Array()
+template <typename T>
+Array<T>::~Array()
 {
 	std::cout << "Array destructor called" << std::endl;
 
@@ -120,8 +120,8 @@ Array<Type>::~Array()
 // ----------------------------------------
 // getters / setters ----------------------
 
-template <typename Type>
-unsigned int	Array<Type>::size() const
+template <typename T>
+unsigned int	Array<T>::size() const
 {
 	return (_size);
 }
@@ -133,11 +133,11 @@ unsigned int	Array<Type>::size() const
 // ----------------------------------------
 // operators overload ---------------------
 
-template <typename Type>
-Type&	Array<Type>::operator[](unsigned int index)
+template <typename T>
+T&	Array<T>::operator[](unsigned int index)
 {
 	if (index >= this->_size)
-		throw (Array<Type>::OutOfBoundException());
+		throw (Array<T>::OutOfBoundException());
 	else
 		return (this->_array[index]);
 }
@@ -149,8 +149,8 @@ Type&	Array<Type>::operator[](unsigned int index)
 // ----------------------------------------
 // exception ------------------------------
 
-template <typename Type>
-const char*	Array<Type>::OutOfBoundException::what() const throw()
+template <typename T>
+const char*	Array<T>::OutOfBoundException::what() const throw()
 {
 	return ("Element is out of bounds.");
 }

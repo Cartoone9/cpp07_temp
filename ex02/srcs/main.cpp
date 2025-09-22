@@ -6,7 +6,7 @@
 /*   By: jramiro <jramiro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 17:43:14 by jramiro           #+#    #+#             */
-/*   Updated: 2025/09/19 14:17:42 by jramiro          ###   ########.fr       */
+/*   Updated: 2025/09/22 16:44:26 by jramiro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,12 @@ int	main(void)
 		std::cout << "arr[" << i << "] = " << arr[i] << std::endl;
 
 	// Test out-of-bounds exception
-	try {
+	try
+	{
 		arr[10] = 100;
-	} catch (const std::exception& e) {
+	} 
+	catch (const std::exception& e) 
+	{
 		std::cout << "Exception caught: " << e.what() << std::endl;
 	}
 
