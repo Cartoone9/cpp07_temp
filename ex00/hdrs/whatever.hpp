@@ -6,7 +6,7 @@
 /*   By: jramiro <jramiro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 17:44:48 by jramiro           #+#    #+#             */
-/*   Updated: 2025/09/16 17:51:50 by jramiro          ###   ########.fr       */
+/*   Updated: 2025/09/26 20:01:00 by jramiro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,21 @@ void		swap(T& var_1, T& var_2)
 }
 
 template <typename T>
+T&			min(T& var_1, T& var_2)
+{
+	return (var_1 < var_2 ? var_1 : var_2);
+}
+
+template <typename T>
 const T&	min(const T& var_1, const T& var_2)
 {
 	return (var_1 < var_2 ? var_1 : var_2);
+}
+
+template <typename T>
+T&			max(T& var_1, T& var_2)
+{
+	return (var_1 > var_2 ? var_1 : var_2);
 }
 
 template <typename T>
