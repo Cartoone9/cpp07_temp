@@ -6,7 +6,7 @@
 /*   By: jramiro <jramiro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 17:43:14 by jramiro           #+#    #+#             */
-/*   Updated: 2025/09/22 16:44:26 by jramiro          ###   ########.fr       */
+/*   Updated: 2025/09/26 18:45:27 by jramiro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,6 @@
 
 int	main(void)
 {
-	Array<int> arr(5);
-
-	// Fill array
-	for (unsigned int i = 0; i < arr.size(); ++i)
-		arr[i] = i * 10;
-
-	// Print array
-	for (unsigned int i = 0; i < arr.size(); ++i)
-		std::cout << "arr[" << i << "] = " << arr[i] << std::endl;
-
-	// Test out-of-bounds exception
-	try
-	{
-		arr[10] = 100;
-	} 
-	catch (const std::exception& e) 
-	{
-		std::cout << "Exception caught: " << e.what() << std::endl;
-	}
 
 	return (0);
 }
