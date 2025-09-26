@@ -6,7 +6,7 @@
 /*   By: jramiro <jramiro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 17:43:14 by jramiro           #+#    #+#             */
-/*   Updated: 2025/09/26 20:05:49 by jramiro          ###   ########.fr       */
+/*   Updated: 2025/09/26 20:09:54 by jramiro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	minmaxTest(T& value_1, T& value_2, const std::string names[], bool which)
 		<< ":"
 		<< std::endl;
 
-	std::cout << (ret == value_1 ? names[0] + " (": names[1] + " (")
+	std::cout << (ret == value_1 ? names[0] + std::string(" ("): names[1] + std::string(" ("))
 		<< ret << ")" << std::endl;
 }
 
