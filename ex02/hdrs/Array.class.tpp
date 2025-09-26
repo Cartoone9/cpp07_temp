@@ -6,7 +6,7 @@
 /*   By: jramiro <jramiro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 15:05:29 by jramiro           #+#    #+#             */
-/*   Updated: 2025/09/22 16:43:19 by jramiro          ###   ########.fr       */
+/*   Updated: 2025/09/26 20:21:08 by jramiro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ class Array
 		~Array();
 
 		// operators overload
-		T&	operator[](unsigned int index);
+		T&			operator[](unsigned int index) const;
+		const T&	operator[](unsigned int index) const;
 
 		// methods
 
@@ -56,7 +57,7 @@ Array<T>::Array()
 	: _size(0)
 	, _array(NULL)
 {
-	std::cout << "Array default constructor called" << std::endl;
+	// std::cout << "Array default constructor called" << std::endl;
 }
 
 template <typename T>
@@ -64,7 +65,7 @@ Array<T>::Array(unsigned int n)
 	: _size(n)
 	, _array(n ? new T[n]() : NULL)
 {
-	std::cout << "Array size constructor called" << std::endl;
+	// std::cout << "Array size constructor called" << std::endl;
 }
 
 template <typename T>
@@ -72,7 +73,7 @@ Array<T>::Array(const Array<T>& old_obj)
 	: _size(old_obj._size)
 	, _array(old_obj._size ? new T[old_obj._size] : NULL)
 {
-	std::cout << "Array copy constructor called" << std::endl;
+	// std::cout << "Array copy constructor called" << std::endl;
 
 	for (unsigned int i = 0; i < _size; i++)
 		this->_array[i] = old_obj._array[i];
@@ -81,7 +82,7 @@ Array<T>::Array(const Array<T>& old_obj)
 template <typename T>
 Array<T>&	Array<T>::operator=(const Array<T>& old_obj)
 {
-	std::cout << "Array assignement operator called" << std::endl;
+	// std::cout << "Array assignement operator called" << std::endl;
 
 	if (this != &old_obj)
 	{
@@ -101,7 +102,7 @@ Array<T>&	Array<T>::operator=(const Array<T>& old_obj)
 template <typename T>
 Array<T>::~Array()
 {
-	std::cout << "Array destructor called" << std::endl;
+	// std::cout << "Array destructor called" << std::endl;
 
 	delete[] _array;
 }
@@ -134,7 +135,16 @@ unsigned int	Array<T>::size() const
 // operators overload ---------------------
 
 template <typename T>
-T&	Array<T>::operator[](unsigned int index)
+T&	Array<T>::operator[](unsigned int index) const
+{
+	if (index >= this->_size)
+		throw (Array<T>::OutOfBoundException());
+	else
+		return (this->_array[index]);
+}
+
+template <typename T>
+const T&	Array<T>::operator[](unsigned int index) const
 {
 	if (index >= this->_size)
 		throw (Array<T>::OutOfBoundException());
